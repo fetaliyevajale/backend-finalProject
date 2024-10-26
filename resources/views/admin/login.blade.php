@@ -2,6 +2,17 @@
 
 @section('content')
 <h1>Admin Girişi</h1>
+
+@if ($errors->any())
+    <div class="error-messages">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form method="POST" action="{{ route('admin.login') }}">
     @csrf
     <input type="email" name="email" required placeholder="Email">
