@@ -10,144 +10,71 @@
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #a0d8ef, #3d7c91); 
             margin: 0;
-            padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
             color: #333;
-            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #3d7c91;
+            padding: 20px;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .sidebar ul li a:hover {
+            color: #a0d8ef;
         }
 
         .container {
-            width: 100%;
-            max-width: 450px;
-            padding: 40px;
+            flex-grow: 1;
+            padding: 20px;
             background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .container:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 400px;
-            height: 400px;
-            background: rgba(61, 124, 145, 0.15); 
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            animation: rotate 10s infinite linear;
-        }
-
-        @keyframes rotate {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+            border-radius: 0 20px 20px 0;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            position: relative;
-            margin-bottom: 20px;
-            color: #3d7c91; 
+            color: #3d7c91;
             font-size: 36px;
             font-weight: bold;
             text-transform: uppercase;
-            z-index: 2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 2px solid #3d7c91; 
-            border-radius: 5px;
-            font-size: 16px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            z-index: 2;
-            margin-left: -15px;
-        }
-
-        input:focus {
-            border-color: #2a4d4f; 
-            outline: none;
-            box-shadow: 0 0 8px rgba(42, 77, 79, 0.5);
-        }
-
-        button {
-            width: 480px;
-            height: 50px;
-            background-color: #3d7c91; 
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            margin-left: -15px;
-            transition: background-color 0.3s, transform 0.3s;
-            z-index: 2;
-            position: relative;
-            overflow: hidden;
-        }
-
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: transform 0.8s ease;
-            transform: scale(0);
-            z-index: 0;
-        }
-
-        button:hover::before {
-            transform: scale(1);
-        }
-
-        button:hover {
-            background-color: #2a4d4f; 
-            transform: translateY(-3px);
-        }
-
-        .error-messages {
-            color: #d9534f;
-            margin-top: 30px;
-            font-size: 14px;
-            margin-left: -25px;
-            z-index: 2;
-            position: relative;
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 30px;
-            }
-            button {
-                font-size: 16px;
-            }
         }
     </style>
 </head>
 <body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ route('admin.products.index') }}">Products</a></li>
+            <li><a href="{{ route('admin.blogs.index') }}">Blogs</a></li>
+            <li><a href="{{ route('admin.team.index') }}">Our Team</a></li>
+        </ul>
+    </div>
+    
     <div class="container">
-        <h1>Admin Panel</h1>
+        <h1>@yield('title')</h1>
         @yield('content')
-        <div class="error-messages" style="display: none;">Xəta mesajı burada görünəcək.</div>
     </div>
 </body>
 </html>
